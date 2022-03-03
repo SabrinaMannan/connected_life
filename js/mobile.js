@@ -16,23 +16,31 @@ const searchPhone = () => {
 
 const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
-    data.forEach(data => {
+    searchResult.textContent = '';
+    if (data.length == 0) {
+        console.log("Not found!");
+    }
+    else {
+        data.forEach(data => {
 
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
-        
-        <div onclick="loadPhoneDetail('${data.slug}')" class="card h-100">
-            <img src="${data.image}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">${data.phone_name}</h5>
-            <p class="card-text">${data.brand}</p>
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+            
+            <div onclick="loadPhoneDetail('${data.slug}')" class="card h-100">
+                <img src="${data.image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">${data.phone_name}</h5>
+                <p class="card-text">${data.brand}</p>
+            </div>
         </div>
-    </div>
-   
-        `;
-        searchResult.appendChild(div);
-    })
+       
+            `;
+            searchResult.appendChild(div);
+        })
+    }
+
+
 
 }
 
